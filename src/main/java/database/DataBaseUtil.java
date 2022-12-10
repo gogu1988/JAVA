@@ -10,6 +10,7 @@ import java.io.*;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.stream.Stream;
 
 public class DataBaseUtil {
 
@@ -73,6 +74,7 @@ public class DataBaseUtil {
             statement.execute("SQL query to insert values");
         }
 
+        Stream<Integer> s = Stream.<Integer>builder().build();
     }
 
 }
