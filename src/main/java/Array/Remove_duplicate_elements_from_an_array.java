@@ -67,3 +67,17 @@ public class Remove_duplicate_elements_from_an_array {
     }
 
 }
+
+/*
+        Original Array :
+        0	3	-2	4	3	2
+        Array with unique values :
+        0	3	-2	4	2
+        ---------------------------
+        Original Array :
+        10	22	10	20	11	22
+        Array with unique values :
+        10	22	11	20
+        ---------------------------
+
+ */
