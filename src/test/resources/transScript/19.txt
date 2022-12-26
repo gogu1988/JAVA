@@ -1,0 +1,87 @@
+Hi there, and welcome to this session on
+Plugins, UI and Security, related toMobile Application Architecture. In this
+session, we'll talk about the differenttypes of plug-in services and the
+structure of those services related tomobile applications we'll discuss how we
+need to avoid monolithic UI modules andwe can do that by making sure we create
+the correct type of themes and we useCSS well and then we'll wrap things up
+by talking about security and we'll lookat some of the areas around
+authentication encryption and SSLpinning so let's go ahead and get
+started when building mobile apps it'simportant to consider plugins services
+which enable us to extend ourapplication and take advantage of device
+capabilities a plug-in is a native codemodule that is implemented in iOS
+Android or other system and exposes aJavaScript API so the plug-in can be
+consumed through JavaScript in ourapplication these plugins are often
+stored and can be found in the gitrepository so if we wished to create a
+new plug-in from scratchwe would need to write the native code
+for the target platform if we're luckyenough the type of plug-in we're looking
+for is already available from git andall we would need to do is make it
+accessible inside of out systems to dothat the next step would be to create a
+plug-in service which is nothing morethan a module that would provide a
+client action to call the plug-in itselfthe plug-in can be exposed through
+public actions or public blocks thatcall the exposed API or potentially
+generate events in this way ourapplication would be using actions to
+access the device capability or it wouldbe reacting to operations in the device
+through the events that were thrownfor more details on how to create a
+plugin service check out the articleentitled create a plug-in to use mobile
+capabilities in your application it canalso help to use the template plugin
+that is available in the forge and thishas a base structure that provides a
+good starting point to create newplugins another important concept to
+remember is to avoid monolithic UImodules in out systems mobile apps all
+screens must be placed in the samemodule and all the links inside of an
+application must use destinations andnot external URLs so the style guide
+template module which includes theexception flow will be cloned when a new
+application is created this first modulewill not only contain the application
+theme but should also be the only moduleto contain screens if it's the only
+module to contain screens then to avoida monolithic module that includes all UI
+elements it can be helpful to splitother UI elements per functionality and
+when we say UI elements we mean blocksthat are related to different core
+widgets basically the idea is to keepthe screens as simple layouts that have
+placeholders and load the content theyneed from blocks this approach allows
+the blocks to be grouped into functionalmodules such as Auto and health these
+modules can then have their ownindependent life cycles so keeping them
+separate makes for easier deploymentsnow as we mentioned earlier the mobile
+template will include the common flowand the menu artifacts and this helps
+ensure that all screen references existinside the same module now having the
+correct theme architecture is alsoimportant we want to avoid CSS in blocks
+or screens because they'll create extraCSS resources that will need to be
+loaded this can affect performancebecause the average mobile device
+to be impacted much more by resourceloading and cascading CSS then the
+typical browser would another aspect toconsider is that if we start changing
+CSS in blocks or screens that this canpotentially affect screen transitions
+when we're moving from one screen toanother during the transition the two
+screens are loaded at the same time andthe CSS of the new screen may interfere
+with the previous screen to reduce thesetypes of issues
+CSS should be limited to the themeitself as much as possible now that we
+know how to handle the UI elements let'stalk a little bit about security
+specifically authentication andencryption it helps to use standard
+authentication methods like Google orFacebook for online registration and
+login these are standards which can easethe process of logging in by allowing
+people to use their more common IDs andpasswords although the standard
+authentication method works well whenwe're online if we're offline we need an
+alternative way to log in such as afingerprint or a pin now these are not
+meant as primary means of registrationbut can be added to a user profile after
+registration to allow for offline loginsalternatives like the pin should not be
+allowed to be used when the user isonline they should only be allowed to
+use these in offline scenarios when thestandard services aren't available and
+if we use pins for offline logins weshould also subject these to a
+validation date so that if a userdoesn't perform an offline login for a
+certain period of time we shouldactually require the user to perform an
+online login another extremely importantpoint is that passwords should never be
+stored in local storage because it canbe accessed more easily and then
+potentially hacked we should alsoencrypt sensitive data that's being
+stored locally on the device andonly the sensitive data otherwise we
+incur the performance overhead ofencrypting and decrypting all of the
+data oftentimes the trickier part ofthis recommendation is determining what
+is really sensitive data anothersecurity recommendation is SSL pinning
+there is an SSL pinning plug-inavailable for free on the forge that
+adds extra security to httpcommunications
+on mobile apps transmitting sensitivedata SSL pinning which is sometimes
+referred to as HTTP public key pinninghelps us avoid man-in-the-middle attacks
+this plug-in works on the client side byadding verification of a server
+certificate against hashes of publickeys which have been pre bundled with
+the mobile app if you'd like to learnmore we've included a link to all of the
+details so that you can learn more aboutthe plug-in so to review in this session
+we talked about plug-in services wediscussed how to avoid monolithic UI
+modules by making sure we use themescorrectly and have the right CSS and
+then from a security perspective wetalked about authentication encryption
+and SSL pinning so that's it for pluginsUI and security thanks for listening

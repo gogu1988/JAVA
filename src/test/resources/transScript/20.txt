@@ -1,0 +1,51 @@
+Welcome to the lesson on
+Base Style Guide Architectures.In this lesson, we'll
+give you an overview of what aStyle Guide and a Live Style Guide are.After that, we'll explore the
+OutSystems UI built-in Style Guide.A Style Guide works as
+a tool and a guide forUX/UI designers and developers when
+they are designing and implementing apps.It defines a brand's
+visual communication.On the other hand, a Live Style Guide
+is an instantiation of the Style Guide.It provides a visual guide
+to create a consistent andbeautiful user experience on your apps.A Live Style Guide is
+an app that showcasesthe actual elements and follows the
+Style Guide rules and best practices.OutSystems UI is a framework that
+provides a series of elements to helpcreate Reactive Web and Mobile apps.It provides three
+elements to help with that.The Theme - For the look
+and feel of your applications,which includes Screen
+layouts, the global stylesheet,and grid definitions.The Templates - Defines the
+structure of the application Modules.A template contains
+Screen definitions andprovides a basic set of
+functionalities, including authentication.Patterns (or blocks) - Provide
+common and reusable UI functionality.Chat message, date picker,
+and carousel are a few examples.In terms of architecture,
+we have several elements.The main reusable theme contains
+the main CSS styles and classes.The template Module
+contains the base definition(such as references to the theme)
+and common layouts and menus that canbe shared between several applications.This Module is automatically
+cloned when you create the firstModule inside a Service Studio app.The patterns include UI
+and Widgets that are standard,reusable components.The Live Style Guide
+includes Screen examples,so developers can understand the
+Style Guide's look and patterns.Other Modules within
+your app will referencethe App Theme and reuse it in order
+to keep a consistent look and feel.So, why is it important to
+define a Style Guide architecture?If you don't do it up front,
+some issues can occur later on.In terms of
+performance, it is importantto only load the necessary
+resources, such as images,CSS, and JavaScript.All apps can easily
+adopt the same Style Guide,reducing long-term maintenance and
+refactoring due to the fact that alllook and feel assets are centralized.It will also help
+development by reducing the dispersionof the look-and-feel code across
+several Modules and preventing custominline styles across many Modules.These are some advantages of
+defining a Style Guide up front.In the next scenario, we'll see how the
+OutSystems UI Style Guide is structured.When the first UI Module
+is created inside an app, itwill be a clone of the chosen
+template, which in turn references the theme.The template contains the
+menu and login UI and logic.Those elements are also cloned
+into the first Module of application.This means that the
+application will have its own menu blockand also the exception handling
+flow, where authentication is done.The application theme is the place to
+do minor look-and-feel customizations.It is also the place
+to customize the login,menu, or the common header.When more Modules are
+created inside the app,they will reference the
+first Module—the App Theme.In the next lesson, we'll see
+how this works in Service Studio.

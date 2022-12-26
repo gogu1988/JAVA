@@ -1,0 +1,57 @@
+In this lesson, we'll
+start by introducing you tothe four Style Guide common scenarios.By the end, you'll understand
+the three possible and common waysof sharing and reusing a Style Guide.In the previous
+lesson, we learned that astyle guide helps define the
+structure, look, and feel thatwill be shared across your applications.Here, we have the four common
+scenarios of a Style Guide architecture.Let's check each of them in detail.Let's start by recapping
+the built-in Style Guide,which is the base scenario.Here, your apps will use the
+built-in Style Guide from OutSystems UI.The first module of your app will
+actually be a clone of the chosentemplate and will
+include the Menu, Login, anda reference to the
+OutSystems UI theme, among others.Other Modules inside
+the app will reference thefirst Module you've created in that app.Minor customizations to the Base
+Theme should be done inside the App Theme.The second scenario can be seen
+as an evolution of the previous one.Specializing a Style Guide makes sense
+when the changes you want to introduceto an existing Style Guide will be
+shared across multiple applications.The first step is to create the
+Custom Theme and Custom Patterns,which are actually an
+extension of another theme.Then, the Custom
+Template is cloned froman existing template and will
+reference the Custom Theme created before.New applications are created
+from the cloned Custom Template,which in turn is
+based on the Custom Theme.Doing this has the benefit of
+inheriting the built-in theme, butit will have an impact on
+performance, due to the extraimports of CSS and other resources.The clone scenario is
+applicable when the amount of changes toan existing Style Guide are extensive.We recommend you clone the
+built-in Style Guide and start from there.In this case, the Custom
+Theme is a clone of a Base Theme.Note that here, as opposed
+to the specialized scenario,the Custom Theme does
+not extend the Base Theme.The Custom Template is also
+cloned, but from the Base Template, and itwill reference the created Custom Theme.Then, new applications
+will use the Custom Templateand will be based on the Custom Theme.Here, just like in
+the previous scenario,the Base Theme and
+Base Template can be clonedfrom OutSystems UI themes and
+templates, or any other themesand templates you might already have.This option is the most
+performant one because it has one lessindirection—namely the reference
+between the Custom Theme and the Base Theme.However, it won't benefit fromchanges introduced in
+the Base theme, sinceit is a completely different Module.This last scenario is kind of the
+fallback and should only be used whenthe Custom Style Guide you want to
+build cannot benefit from any existing theme.The suggested strategy consists
+of cloning the template and theme,as in the previous scenario.However, here we recommend you
+clone the Base Theme from OutSystems UI.This theme contains the bare
+minimum required structure and styles.With this base structure, it is
+up to the front-end developer toexpand and design the theme from there.So far, we've seen different
+approaches to create a Custom Style Guide.Let's now see in more detail
+how elements such as the menuand login can be shared across
+different apps that use the same Style Guide.The first use case is when we have
+different applications and each onerequires its own menu and login flow.In this case, the menu and
+login are defined in the template.This means that for every
+new app, the menu and loginare cloned and specific to the new app.Note that different apps
+still share the same Custom Theme.Another common use case is when
+the login flow needs to be shared,as usually happens with Intranet apps.The menu remains in the template
+and will be specific for each app.However, the Login flow is
+actually defined in the CustomTheme and will be shared between apps.Finally, the portal
+scenario is where allapps have a shared menu and login flow.That is, they are both
+defined inside the Custom Theme,and all apps will reference them.Where the menu and
+login-related elements are defineddepends on your Style Guide's
+purpose and how you want to reuse each one.

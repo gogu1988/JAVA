@@ -1,0 +1,57 @@
+In this lesson, we will look
+at the typical elements thatyou'll find inside each layer's Modules.By now, the Architecture
+Canvas is no surprise to you.Let's go over each layer and see the
+typical elements that you'll find there.Let's start with the Foundation
+layer, where you will have your integrationsand non-functional requirements.The highly-reusable
+elements are defined in this layer.From a data perspective,
+you might need structuresfor inputs and outputs to handle
+data exchanges with external systems.However, you wouldn't
+expect to have any coreEntities because this is for
+integration and non-business functionalities.In regard to Logic, this
+layer provides actions to otherModules in the form of normalized APIs.If you need to
+communicate with external systems,then you will probably also need
+some sort of exception handling.This will ensure that
+error codes and exceptionsthat might occur are handled correctly.If you need
+customized authentication flows,such as a
+centralized single sign-on, thatis also present at the Foundation layer.Session logic might also
+be needed, and the correctplace is also in the bottom layer.Finally, there may be
+roles. You could store rolescommon to a particular domain of users.Roles like Manager or
+Employee tend to be highly reusable,so it makes sense to also put
+those roles in a Foundation Module.Also in the Foundation layer,
+you may have Modules to definehighly-reusable UI patterns
+or blocks, like a calendar.Themes, layouts, and
+exception flows are moreexamples of elements that end up
+being reused across several other Modules.All of this could be
+reusable, and part of a theme Modulethat you store in the Foundation layer.Now, if we move to the Core layer.
+Core business concepts appear here.The elements here will be consumed
+by the Modules from the End-User layer.In terms of data, the core
+business entities should live here.These Entities should
+be exposed as read-only,and the logic inside the Module
+controls manipulation of their data.So, how is data
+changed by other Modules?Well, you should expose the
+change operations via Server Actions.By doing this, you
+have a well-defined API.This makes it easier to
+set default values as needed,or to perform auditing.You may also have
+integration logic that wraps theintegration services that exist
+below, in the foundation layer.Finally, in core Modules you
+would also have roles to definethe different types of accesses to
+the features available in those Modules.Some of the elements that
+might be part of those coreModules are reusable UI business blocks.These blocks are
+business-specific and display information the wayyou need it for the specific business.Note that no Screens
+should be defined in this layer.With the core Entities, you
+may also have asynchronous dataprocessing in case you
+want to classify, synchronize,count, or aggregate information.
+You can use both business processesand timers to perform such tasks.Only one layer
+remains - the End-User layer.This is where essentially your
+Screens and auxiliary elements are defined.From a data perspective, you'd havepotentially different types of
+Entities that would help save the UI status,as well as some
+auxiliary structures if needed.Some business logic
+might exist, but theseelements are not reusable and are
+meant to support specific use cases and UI.An example would be form validations.You wouldn't want any generic
+reusable logic in this layer.If that's the case, then
+you should probably extractit and place it inside a core Module.Inside the end-user
+layer, you would expectto find very specific role-based UI to
+support the use cases or the processesthat you're trying to make available.Finally, you may need
+the business process itself,defined as a workflow.Any processes that
+help support the use casewould be in an end-user Module as well.That's it.Don't miss the next lesson,
+where we will see the typicalModule elements in a specific scenario.

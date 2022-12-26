@@ -1,0 +1,288 @@
+Today we're going to talk about OutSystems
+and domain driven design.This is an awareness session.So don't get your hopes too high.We want you to leave this session with more
+questions than answers and that's what it'sintended from an awareness session.So let's move on.I believe most of you already saw me yesterday
+in the main session or in the workshop.My name is Rui Coutinho, I've been with OutSystems
+for roughly eight years and currently, I amthe Architecture Domain Expert where I mostly
+think of about new patterns and I try to understandwhat our users are using and how that can
+beapplicable for more customers.  And so on.So today, as I mentioned, we're going to talk
+about Monoliths versus Microservices.Then we're gonna follow a domain driven design
+approach, followed by some things abouthow you can actually isolate your applications
+from each other.And finally, we want to dive into the supporting
+tools we have.If you want to build something, that's domain
+oriented.Okay.Before we start, let's think about the growth
+of a software factory.Usually, you start small, you have a few applications,
+they have some connectivity between them,you start creating some modules, there are
+some dependencies, you have a small Monolith.At this stage, you mostly are using the four
+layer canvas and you are thinking about themodules' relationships, and violations between
+them.You don't need things that are too complex
+because your factory is actually small enough.You can manage that with a small team, as
+well.As you grow, you start to potentiate more
+and more the reusability of your core conceptsand connectivity between applications becomes
+stronger, and you start to have issues whenyou actually deployed one application without
+having to deploy the other ones.So during this phase, you are mostly using
+still the four layer canvas, but focusing on the application composition.Are you aware of what is application composition?Okay.It's the way you organize your modules to
+an application.Application in this context is a LifeTime
+application, which is a minimal deployment unit that you can do when you're using LifeTime.There's a whole video about application composition
+online, check it out if you want to learn more about it.The main goal is really to have independent
+LifeTime applications, so they can actuallydeploy these applications without impacting
+one another.As you start having more and more and more
+applications, then what happens is that besideshaving a degradation of your -itilities, which
+are the maintainability, reliability, scalabilityand so on.The deployment becomes slow and complex.Some of our customers, when they are at this
+stage, they actually stopped using LifeTimeand go back to Service Studio to the old solution
+files.And they have custom deploys because they
+only want to do, deploys of what they actually changed.We call this cherry-picking because they go
+and pick the things they want to move forward to production, and they do it.As you can imagine, this is very difficult
+to do, complex and you can easily make a mistakeand take, uh, the wrong dependents with you
+to other deployments.So teams are at odds.They are struggling with this.So this is the time where should start thinking
+about decoupling your services.This will promote independent teams, products,
+not projects, and you will have a more modern digital platform.Now, I'm not saying that you should only look
+into microservices/domain driven design whenyou are growing into big factory, you can
+do it earlier.If you're ready to know that that's the direction
+to move forward.Okay.Most of our customers say they need it but
+they don't know why.And then if you start implementing that early
+stage, you'll probably do it wrong   and then you need to rework anyway.So, I rather for you to start growing in a
+more strong and concise way, and eventually, evolve to bigger architecture and
+start decoupling things, but that's your choice, I mean, both options are valid.So, let me talk about Monoliths versus microservices.There is no question that microservices brought
+a lot of advantages.Mostly they have improved modularity.They provide an abstraction of your business
+capabilities.Services are managed as products, not as projects,
+simple and light communications, they provide stack independencies of course and environmental isolation that will support your applications to scale independently.Okay.Also, it enables team development, autonomy
+and promotes continuous CI/CD autonomy.If you want to learn more about CI/CD, we'll
+have Rui here, he'll be talking after me.So please join the next session.So does this mean that you all need to go
+in and start adopting all microservices strategy?My favorite answer for everything in the world,
+it depends.It depends.Like most of the architectural decisions that
+we do on our day to day basis, they will depend on a lot of factors.We will analyze and compare both approaches
+and hopefully, we find something in the middle.Every time you have a fragmented system, it
+comes with the price.You have to consider inter-process communication,
+you need to deal with network latency, hiccups in the network, resistance to failure...You have to handle multiple transactions.So every time we go from the monolith to another
+system you have to have transaction handling.Fault tolerance.You have to add an additional layer of coding
+to make sure you are resilient to failureand communication errors and make sure that
+everything is consistent across your entire system.You have limited data mashups.So if you want to join data from multiple
+sources, you either do it in memory, or youhave a very big API that actually connects
+to the other ones, but in the end, it's difficult.And the more APIs you connect to and more
+the data you need to compose, it makes this task more difficult to implement and to maintain
+as well.Security.So you need to make sure you have credentials
+for all these systems that you're trying to communicate.Debugging and troubleshooting.So if the error appears somewhere here, even
+if it's in the middle, you will always startby the beginning trying to identify the root
+cause.This is also very typical when you have an
+OutSystems application that is the front endof your system and it needs to integrate into
+legacy systems.Every time there's a bug people always call
+OutSystems saying there is a problem withinthe platform.And then we troubleshoot all the way to the
+root cause, which takes time, and of course,time means money.And finally monitoring and logging.To have an effective system, you need to be
+able to monitor and log the activities within your factory.Usually, this is in a centralized service
+so that you can just query all the loggingthat you produce over time.This means that although microservices are
+great, over time, the initial benefits becomeburdens and teams start to slowly develop.So initially they are completely independent,
+their development moves fast, over time,they just started creating dependencies and
+then development suffers and it starts to slow down.But is there any option that we can have to
+mitigate this pain and all these issues?Well, you can imagine that you might want
+to adopt a single stack that covers most of those items in the list.For example, OutSystems...OutSystems takes care of security, debugging,
+troubleshooting, monitoring, logging.So it's out of the box for you and it already
+simplifies almost half of those items.What about data mashup?A big system always needs composition for
+multiple master data, core concepts.You can actually do that if you are not a
+fundamentalist and within OutSystems you willallow yourself to expose a query model.The query model is based on read-only entities
+that you expose that are consumed by other applications in OutSystems.This allows you to do at least fast queries
+and still use the scaffolding capabilitiesof the platform.I'm going to explain this in a bit more detail
+in a few slides, they're coming next.What about those three topics there?Inter-process communication, multiple transactions,
+and fault tolerance.Well, you cannot avoid that in any case, what
+you can have, you can have mitigation over those topics.So a proper architecture design plus some
+governance placement module will help communicateand facilitate that development.So do we have any option to balance all these
+approaches?Firstly, let's have a closer look into monolith
+versus microservices.I am going to move here because it's difficult
+to see from there.So let's look at deployment independency.So in the Monolith, because everything is
+strongly coupled you need to deploy everything together.While on the microservices, you have independent
+deployments, you can just deploy one microservices without 
+concerning the other parts of your ecosystem.In terms of scale independency, each runtime
+must be published and all the referenced elements with it.So that's, one less star for the monolith
+while the microservices can publish and deploydifferent applications independently as well.But if you do turn to service communication,
+in-process communication is a lot easier in a monolith,because they are running under
+the same thread and under the same memorywhile on microservices is actually required
+additional marshaling and network.And finally, the transaction management, which
+in my opinion, is a more complex part, in the monolith they are all under a single transaction,while in microservices you need to cope with multiple transactions.So which one of these approaches is appropriate? Well,I don't want to say it depends, but,
+it depends on what you're trying to do now.So if you want to go for better CI/CD, scalability,
+you should go for microservices approach.If you are looking for simpler logic and faster
+development, you should go for a Monolith.There are more items in the list that you
+want to consider when you're thinking aboutthis topic, one of which is the use case,
+not all use cases are meant to have a microservicestrategy and the same is valid for the Monolith
+as well.And there's also a very important factor that
+people usually tend to forget, which is beforemoving to a new approach, you need to look
+at your team.If your team is not accustomed to the concept
+if they do not have the time to build experiencewith microservices, for example, they'll have
+more difficulty doing it and you need to investin training for those people.Otherwise, they will learn on the job by trial
+and error.So this is a big part of the items that you
+need to have into consideration, but so weare architects and that's why we should be
+paid big bucks.So why not retain the best of both worlds?What we can actually do, and this is what
+we are starting to implement in our big enterprisecustomers, is following a domain driven design
+approach.So this one drives the development of complex
+systems based on decoupled domains, whereeach domain contains any technology artifacts
+for that domain, the ultimate goal is reallyto have independent CI/CD pipelines for different
+products.So, how do we shape domains in OutSystems?First of all, we try to group concepts by
+either a functional area or a line of business.This will have decision power on what's inside
+the domain, and we'll have a business fitfor what that's trying to do.We can have a marketing domain.You can have an HR domain, you can have a
+service domain...Next, we tried to recreate the multidisciplinary
+team that was left on the ship and controlsthe domain.So it'll have like an architect for the domain,
+we'll have a developer, a UI front-end guyas well, so that team can work independently
+from the rest of the domains.And finally, you need to design the interfaces
+that will communicate between the domains.This point is critical because it's the one
+to have too complex APIs.Then you have to maintain a lot of APIs and
+this work needs to be then done in coordinationwith the other domains that need some data
+from your domain.So typically there's an architect overseeing
+all the factory, like in the type of a centerof excellence configuration, and he'll be
+responsible for design the inter-communicationbetween domains, and then he'll have either
+a tech lead or an architect for each one ofthe domains responsible for the solution of
+that domain.So let's try to map these concepts into what
+we have in OutSystems.First of all, a domain can be created by using
+a LifeTime team.This team will be the owner of the domain
+applications.If you think about the sub-domains, these
+will be the LifeTime applications.These are the applications we are building
+to bring our cool features to the end-user,and finally, the concepts, the business concept,
+is as they were up until now the module thatactually implemented the related concepts.Okay, we have two types of domains.The first one is the vertical domain.So have one vertical domain for each line
+of business.And then we have what we call the horizontal
+domains.This is where we're going to put the usable
+services that are really core and foundationalfor your factory, that will be reused by multiple
+domains.For example, if you have a customer, the customer
+concept itself is part of your core businessand should be and usually is in the foundation.Then it's reused by all the other domains
+as well.Does this mean that all of the verticals will
+access all the foundations?You can have a foundation that just serves
+two domains for example, but if it's justone vertical accessing one foundation then
+it should just be part of the vertical becauseit's not reusing actually anything.This is an actual example from a customer
+of ours, it's just white labeled.Our biggest factories are going through digital
+transformation and they are just transformingtheir architecture into domain driven design.They actually identified they have a domain
+for the auto, this is an insurance company,as you can see from the example, a house multirisk,
+and more, I'm just simplifying for you.They have some foundation domains as well,
+and they have special vertical domains, whichare actually the B2C or B2E domains, that
+actually reuse a lot of the functionalitybelow.And this is all they will expose and compose
+all the domains into a single unified experiencefor the end-users, like the insurance portal
+and so on.That way they can manage all the different
+portals.Reaching here was not easy.We had a lot of workshops with them.We had a first, a reference architecture,
+just focused on domains to make sure how couldthey break it down.Then had a workshop hand to hand with them
+where we actually tackled one of the domains,before we went for the big bang because if
+you tried to big bang the factory with morethan 1500 modules it will fail.So we went, we isolated one domain, start
+working on that one.They asked us to refactor a lot of the domains
+that they had, but they have one golden rule,which is new applications, new modules, need
+to follow this approach while we are migratingthe older, the legacy modules as well.They are progressing quite well.One of the side effects of this is they actually
+are creating more modules because they arecreating more levels of abstraction on what
+they have to ensure inter-domain communication.I'm going to show a bit of how you can achieve
+that.So let's dig a little bit deeper to services
+across domains.Domains need to communicate because although
+the domain should be pretty isolated on itself,there are always some elements that it needs
+to share with the neighbor.So what do we have in terms of communication?Inside of the domain we are advising to have
+strong coupling.This is what you're doing today without any
+loose coupling, you can follow just the fourlayer canvas rules as they are.So you can see that this is application composition.And then on top of just adding an additional
+layer of abstraction to organize those applicationsinto domains.So this has the advantages of the in-process
+communications and they have common databasetransactions.Why do we do this?Because these are the elements that will change
+more often because if a team is working fora domain for the line of business, let's say
+a marketing team, they will change more oftenthe elements inside the domain.So, it should be strongly coupled to potentiate
+that development.Next.We'll do loosely coupling across domains.So why use loosely coupling across domains?You promote independency between those domains
+and the signatures do not change that often.You actually need to talk between the people
+inside each domain, reach a common agreement,and then implement a similar way of how you
+expose your REST APIs.These public domains have two parts.One is the public entities that I mentioned
+before.Read-only entities that consumers can use
+to list and then service actions that allowyou to do alterations to your modules as well.I have a slide where I tried to explain this
+in a bit more detail, it's two slides away.So please don't leave the room yet.So, exceptionally you might need to have strong
+dependency between domains.They should be the exception, to avoid complex
+logic composition.I'm going to give you an example in the transaction
+part...And the third guideline is that there are
+some elements in your factory that you needto have strong coupling, like for example
+a theme, that needs to be part of a dll, itneeds to be incorporated into your runtime.So those elements should be the foundation
+one and have direct strong coupling for them.I don't know if you noticed but we are using
+light dotted arrows for loose coupling andstrong arrows for strong coupling.So decoupled, coupled.I need to add guidance here.Okay.So what is the domain architecture, if you
+zoom in?There's something called domain API, And the
+domain API is the gateway into your domain,other domains can only access your domain
+through the domain API.It has two big elements, the service API and
+the query model.Of course, this can be more than one for each
+one of these boxes.So the service API allows people to do updates
+and invoke actions and expose complex businessrules as well.While the query model allows people to leverage
+the platform and do direct queries to thedatabase.So, the query model should only contain elements
+that do not change so often because you don'twant to always be updating that query model.It's not more than a table, that has composition
+of other tablets and it's periodically syncedwith the other tables below.So it adds an additional layer of complexity.For example, if you want to list and search
+a customer by name, you can actually go directlyto query model, this will be a reference inside
+your domain, because in OutSystems 11, thereference to an entity is a weak dependency,
+you just have the contact to the entity.Which makes a lot of sense, you just need
+to know the design of the table, which arethe fields.And then every time you do a query it's actually
+running inside the database.Up until now it was a strong dependency and
+you would have to take all that footprintwith you, but now it's loosely coupled which
+makes a lot more sense.So you do a list and search by customer name,
+the query model will have information thereavailable, and if you need to update or the
+details change to often, you go for the serviceAPI, to which you have details about it, this
+will do composition between data below andprovide more complex information.By doing this, you actually have data isolation.You control what can be directly queried by
+other domains, you have ownership and youreduce impacts across domains.By having this query model, you can also just
+drag and drop entities into the other domainsas you do so far and you still have scaffolding
+available for you.There's a downside of course because light
+is not always pretty, this query model bringsadditional complexity.You need to maintain it, you need to synchronize
+it, that's the biggest issue, in my opinion,making sure that data is always available
+and up to date.For that, you can go back to the standard
+synchronization patterns that we have, directintegration, cold cache, hot cache, and so
+on...and you can use that to leverage andbuild the query model.Behind the query model, you can actually think
+about how decoupled domains should be.So we can actually start there and add direct
+access to services, to server actions, andto the entities because the new changes in
+OutSystems 11 actually reduce the need torefresh those elements, as long as you don't
+change the signature, it will still work.When things evolve and you have a more complex
+system, you can actually just break the monolithby having a domain API there that is just
+a service action.Okay.So we have service action in 11, if you want
+to implement this in 10 you can just use aREST API but you will lose the impact analysis
+from OutSystems.So you need to make sure that every time you
+change the signature of your API, you needto propagate that to all domains.With service actions is a lot, lot simpler.And if you want to be fully decoupled you
+will also go from the query model.The client/customer I was telling you about,
+is using this middle implementation becauseit's a lot simpler to maintain.And so far it's been working quite well.What I don't like about it is that you need
+to expose that entity to the outside.And once that entity is exposed, anyone can
+actually take any of the public elements thatyou have inside.So they are actually implementing a strong
+governance model on top of it and make surethat you just consume the entities, not the
+actions as well.And they are using Discovery and some inside
+quires to gather information from.Are you with me so far?Because this is a bit more complex than just
+the plain architecture.And it's also not that easy to explain without
+proper examples.So it's a bit of abstraction.So hopefully you have more questions.And this is just a summary of how you can
+actually expose services in OutSystems.So, I advise you that, if you're consuming
+from another technology or another productionenvironment, you should use REST API.It's the only way actually.If you're talking to another domain use service
+actions and public entities, within the samedomain do strong coupling, public entities,
+and public actions as well.Just to recap or to store it if you wish.So service composition, this is a big, big
+struggle, because imagine you have to handlemultiple transactions.You have a service that actually creates a
+customer, calls another service, creates acontract, calls another service, creates an
+account.In paper, in theory, everything is executed,
+the problem is when something goes bad.So if something goes bad, you need to have
+an undo action that actually needs to redoall the work that was done until the point
+of failure.This is difficult to implement, hard to maintain,
+the more services you call the more difficultwill be.So, you can actually simplify this by, ok,
+let's add a single point of entry to my domainand then inside the domain you still have
+strongly coupled.So, merge the services so they provide a single
+transaction.If this one fails, you don't need to do anything
+because the rollback is done inside the domainalso.You are compromising the decoupling to have
+more control and less risk in your development.Another approach is they might still belong
+to different domains and you break the ruleof inter-domain communication being loosely
+coupled and do a strong coupling for thoseexceptions.There's always a lot of options.We're not being prescriptive about one option.What I want you to understand is that you
+need to design what's best for the use caseand that better serves your current needs.And it's tough.It will be tough, you'll make mistakes.I made a lot of them, uh, the important is
+that you learn and over time you do it betterand better as well.So, let's talk about application isolation
+because we're talking about having multipledomains and then they'll need to be deployed
+eventually to production.This is the typical scenario, people don't
+even think if it's mission-critical or not,they just have a single deployment pipeline
+and then production that comes with all theapplications.This should only be used if you have non mission-critical
+applications because you have a mission-criticalapplication and now the mission-critical application
+goes down, you actually are causing impactsthat are mission-critical as well.So, scenario 1, non mission-critical, single
+pipeline, they'll share a production environment,they'll share a database, and you should at
+least consider dedicated IIS application pools,one per application.The next scenario is let's imagine we have
+a mission-critical application, but we stillwant to share some foundational components.Then you have a shared pipeline between development
+and QA, and from that point onward, you shoulddecouple by having multiple production environments,
+this will give you isolated databases as wellwith the challenge, or the additional complexity,
+of the need to cope and share between apps.I'm not even gonna talk about licenses, sorry,
+that's for your account management.And the third option will be, okay, if it's
+mission-critical and you want to have completeindependency, then you have two pipelines.They will have independent environments, production
+services, and isolated databases, and youstill have to cope with shared master data.And it has an additional challenge because
+eventually, one of the components is builtthere and needed there, and you'll have to
+make a decision of either clone it, and youhave to maintain two components, or you go
+back to the previous model with the sharedpipeline.Okay, we wanna talk about supporting tools,
+can anyone guess the name of the tool we canuse to validate domains?Discovery, yes, the number one tool.Okay, so, in addition to everything that it
+had before, it was enhanced to support domains.So, how do you do that?You go do the configurations, general configurations,
+check Use Domains.Once you have that, you can just go to Manage
+Domains and add domains.You can synchronize domains using the LifeTime
+teams and then for each domain you can defineif it's vertical or horizontal, colors, and
+so on.Once you have the domains, you can actually
+go into the applications, assign a domain,say "this application goes into that domain"
+and you can do this for all the applications.And then you end up with this, I'm really
+sorry about the UI of these applications inthe example...this is an MVP we've made to
+at least have some domain management.You'll see your domains that we've defined
+before, the verticals, the horizontals, andevery time there's something wrong, if someone
+is trespassing something, we call it a trespasserif someone is accessing an entity from a domain
+that is not intended, you'll have a warningthere.Ugly, right?Who thinks this is ugly?No?Thanks, we'll see it.That is functional, you can actually click
+on the domain level, see the applicationsand the elements that are creating this trespassing
+so that you can tackle it, and make sure thatthings are cleaner than ever.And that's almost it, just to wrap-up, I hope
+you be smart about your domain boundaries.In order for the domain-driven design approach
+to work, you need to define clear boundariesand define clear contracts.Use strong coupling inside the domains and
+loosely coupling across the domains.That's what I had for you today.Thank you!

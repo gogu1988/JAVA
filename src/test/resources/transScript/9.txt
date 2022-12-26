@@ -1,0 +1,73 @@
+In this lesson, you will
+learn why validating yourarchitecture design is so important.We will explain the
+Architecture Canvas validationrules for modules and also present
+some extra recommendations that will helpyou achieve a solid architecture design.Designing your
+architecture properly willallow you to build
+applications fast, build them right,and build them for the future.From an architecture standpoint...Our goal is to promote
+the correct abstractionof reusable services and components, Optimize lifecycle independence, and minimize the impact of changes.Therefore, validating
+the architecture of asolution is an important step to
+prevent and avoid mistakes that will leadto issues like poor
+service abstraction,unmanageable dependencies, and slow-moving,
+inflexible legacy systems.The way we do that with OutSystems
+is by using the Architecture Canvas.After designing your
+architecture and placing the modulesin the correct layers of the canvas,
+you need to validate what you createdto make sure your architecture is sound.In order to perform this validation,
+you must follow a set of basic rules.The first rule states that we should
+not have upward references across layers.In practice, this rule means that
+a module in a lower layer should notreference a module in a higher layer.An upward reference
+can create a cluster,where any two modules directly or
+indirectly have a circular dependency.The circular dependency
+can cause any module thatreferences an element inside the
+cluster to be dependent on the entire cluster.In this case, by
+following the red arrows,Core Module 1 can reach
+Core Module 2 indirectly.Also, Core Module 2 can
+reach Core Module 1 indirectly.Then, if we have an End-User Module2 consuming elements from Core
+Module 2, it may become dependenton other modules in
+the cluster as well, eventhough it should not be aware of them.This situation can cause
+End-User Module 2's deployment tohave an unnecessarily large footprint.In addition, changes to any
+module in the cluster will requireEnd-User Module 2 to be updated as well.The second rule states
+that we should not have sidereferences between end-user modules.This rule ensures that the
+modules are correctly isolated,allowing them to have
+different lifecycles.In this example, End-User Module 1 is
+a consumer of another End-user module,thus creating a side reference.This scenario will cause
+End-User 1 to also become dependenton a cluster that shouldn't affect it.If an end-user module needs to reuse
+something from another end-user module,then we should analyze what
+elements are being referenced and probablypromote those elements to a Core module.However, this rule has an
+exception. Screen referencesbetween end-user modules are allowed.This exception is explained in
+more detail in our documentationon strong and weak references.Finally, the third rule
+states that we should avoid cyclesbetween core or foundation modules.If you follow the first rule, you
+should not have circular referencesbetween modules in different layers.Following the second rule
+prevents cycles between end-user modules.However, we still need to
+avoid circular referencesin the core and foundation layers.Cycles are always undesirable,
+since they bring unexpected impacts.They indicate that the
+concepts are not correctlyabstracted and need to be reviewed.These are the three Architecture
+Canvas validation rules for modules.They are simple to understand
+and memorize and will help preventissues in your architecture design.In addition to these rules, we
+present some extra recommendationsthat are not related to dependencies
+but that can help improve your solution.The first
+recommendation is that core modulesshould not have front-end Screens.Sometimes developers add
+Screens to run some tests in thecore module on which they are working.Even if these Screens are
+useful to support testing,they should be removed
+from the core module andplaced in an end-user testing module.One of the major dangers of
+keeping test Screens on core modulesis that they can open up a security
+breach if they end up in production.A second recommendation
+is that all your publicEntities should be set to 'read only.'This setting will
+ensure that you are notallowing consumers to
+directly create, update,or delete records in the database.Instead, the consumers can use a core
+service that handles the business rules,such as validations or normalizations.Make sure that you
+implement all your businesstransactions as public actions to
+fully abstract the core module and have asafe service exposed to other consumers.The third recommendation is to not have
+business logic at the foundation layer.This is a common
+mistake, but this layer needsto be business agnostic so that it can
+be reused in any domain of application.Similarly, the fourth
+recommendation states that we should not havecore Entities in the foundation layer.We must ensure that the foundation
+layer has only non-functional requirements.However, that does not
+mean that a foundation layermodule cannot have Entities at all.If you need to create a
+generic service to audit all yourtransactions and create
+an audit Entity, that isperfectly possible since it is a case of
+supporting a non-functional requirement,not a business-related scenario.So now you know how to
+use the three ArchitectureCanvas validation rules for modules.In addition to the
+rules, we've offered fourextra recommendations that will help
+you achieve a solid architecture design.In the next lessons,
+we'll cover the validationrules for apps and which tools can
+be used to help the validation process.

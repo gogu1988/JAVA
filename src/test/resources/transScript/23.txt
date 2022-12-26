@@ -1,0 +1,158 @@
+Hi there, and welcome to this session on
+Refactoring an Application. Whilebuilding applications or solutions we
+can use the Four-Layer Canvas follow thearchitecture design process and
+implement some of the common patterns totry to create sound architectures but
+what happens when we have to modify ourcurrent applications and architecture to
+deal with new requirements or newapplications that will help the business
+grow or what happens when we'represented with applications that aren't
+following the principles and the bestpractices we may need to refactor those
+applications to create a soundarchitecture so in this session we're
+going to discuss the prioritizationcriteria for fixing violations that we
+find so that we can refactor ourapplications in the best possible order
+we'll also look at ways to promote loosecoupling which will give us a couple
+different choices to deal with certainsticky situations but will allow us to
+refactor things and give us a number ofchoices
+we often can solve refactoring problemsby moving elements in between modules so
+we'll discuss how that's possible andthen sometimes we have difficult
+situations where we need to extractelements from a module and not impact
+consumers that had already beenconsuming those elements so there are a
+number of different things that we needto focus on we're going to actually
+leave this last one for a differentsession because there are a lot of
+details but we'll do a quick overviewhere to keep all of the refactoring
+information in one place so here aresome prioritization criteria that can be
+helpful to determine the order in whichwe should approach refactoring one
+important thing to remember here is thatevery time we do a refactor we should
+only be doing the refactoring and notincluding any new development it's
+important to take refactoring changes toproduction before adding any new
+elements now we should fix violations inthe order in which the fixes will have
+themmost impact so at the top of the list we
+should fix and remove any upper and sideviolations in the orchestration layer we
+should never consume any elements fromthe top of the hierarchy otherwise we
+end up creating a cluster ofinterconnected modules and then we end
+up having to bring the whole clusteralong the second criteria is to solve
+the same type of violations but for theend user layer this solves the same
+problem but as slightly less of animpact because it's a layer below the
+orchestration layer third we need to fixany direct cycles between modules in the
+core layer this also has slightly lessimpact because it limits clusters to
+just the core and the library layersthen we should solve any violations to
+the core layer this only requires fixinglibrary modules that aren't properly
+being isolated from the core modulesthis can unexpectedly create little
+clusters of core and library modulesalong the way and finally we would need
+to solve direct cycles between librariesthe impact here is usually limited due
+to the fact that these are at the bottomlayer of the hierarchy and they don't
+affect many other things so theprioritization criteria give us a nice
+way of choosing which of the differenttypes of violations that we should
+address first and the ones at the top ofthe list are the most important but what
+happens if we get to a particular leveland we find multiple violations in one
+of these categories well when that isthe case inside a particular category
+pick the module with the most consumersfirst as that will actually solve the
+most amount of conflicts if we happen tobe using the discovery tool to support
+this refactoring then we'll be able tosee the number of consumers and sort the
+modules by the amount of impact thatthey will haveso if we've selected a violation to work
+on through the prioritization criteriathen we typically have to do one of
+several things to fix the violation wemight need to move elements between
+modules we might need to extract thingsfrom modules or we may actually need to
+look at the patterns that are currentlybeing implemented and find better types
+of patterns in one particular case agood way to do that is to promote more
+loosely coupled patterns so if we'regoing to promote loose coupling what are
+some of the areas that it's easiest todo that in one way to keep modules
+loosely coupled is to avoid screendestinations we should avoid using
+screen destinations that would causeupward references like an a menu web
+block that's in a library module whichmight reference a screen in an end-user
+module screen destinations can alsocause side references when they're used
+in between and user modules if we usethem to control screen flow between
+these modules in this situation useexternal URLs instead and then this will
+allow for the navigation to occurwithout creating references that cause
+these types of violations anothertypical example might be when we need to
+react to business events and this wouldbe changes to one core business entity
+affecting some other core entity so forexample we may have contracts that are
+related to customers as we might expectthe contract core service would consume
+the customer core service but what mighthappen when certain attributes of the
+customer change that might affect itsclassification and if that
+classification affects certainconditions of the contract a natural
+approach might be to think that we willcall contract update whenever something
+happens on the customer and the customerneeds to be updated
+well unfortunately this creates a cycleand conceptually we wouldn't necessarily
+expect a customer to have to depend on acontract there are probably many
+consumers that are interested in thecustomer concept but don't need any
+information about contracts at all so wewould want to avoid this type of
+circular reference the recommendedsolution is to add a business logic
+module on top of the base core servicesand by composition we'll be able to
+perform the entire transaction so firstwe would update the customer and then if
+necessary we would update the contractin this situation it's possible to solve
+the problem by merging all of theconcepts together but this actually
+creates a much larger module thattightly couples core concepts that
+really have their own life cycles sosometimes you have these types of
+problems and refactoring of this sortreally isn't possible so there are also
+some other alternatives and solutions tothink about so two of those services to
+those solutions are either usingservices or using BPT so the first
+alternative says let's use rest or asoap web service to avoid the unwanted
+reference so the contract still does theexpected consumption of customer but
+customer now calls some restful serviceor some soap web service on the contract
+so this does remove the conceptualdependency the actual dependency but the
+conceptual dependency persists and welose all the benefits of true change
+which can be a problem anotheralternative is to use light bpt to
+publish and subscribe events now thiscan be accomplished by simply adding a
+control entity that exposes BPT eventswhere we where when we insert a record
+into the customer ID that was updatedthen we can have the current consumer of
+that customreacting to that in certian now although
+this solves the problem there's a minordisadvantage to this approach which is
+that the updates occur in differenttransactions once the customer is
+updated then the contract sees it andreacts as part of a separate transaction
+in certain cases that can cause aproblem and in other cases it's not that
+big of a dealsometimes the refactoring isn't going to
+be quite that complicated we just wishto move some elements from one module to
+another to eliminate an upward referenceor a circular reference so in general
+when we go to move elements from onemodule to another there can be some
+challenges one such challenge would bemoving an entity from one module to
+another because what's actuallyhappening is we're cutting or removing
+the entity from one module and pastingor creating it in another module that
+actually creates a new table in thedatabase which is now empty so the
+question becomes how can we moveelements between modules without losing
+their data or their configurationinformation to do this we need to create
+some sort of migration script we cancreate migration scripts by using the
+refactor component that can bedownloaded from the out systems forge
+the refactor component is actually atemplate of a migration script so all we
+have to do is download it from the forgeand then clone it to create our own
+migration script cloning it preventscollisions and allows multiple people to
+be doing a refactoring of differentcomponents at the same time so what can
+the refactoring component be used for ifwe use the refactoring component for
+entities we can move entities from onemodule to another and have the data stay
+connected under the covers what isactually happening is that the new
+entity that is created gets connected tothe old physical table moving roles with
+refactor preserves the grants that werealready provided to users in that
+particular environment and the samegeneral thing happens with site
+propertiesand foreign entities where we keep the
+effective values so that we know wherethe data is going to be now other types
+of elements that don't have anypersistence things like actions web
+blocks or screens don't need to bedeclared in a refactor at all because
+refactor works by adding declarations inspecific types of actions so if you want
+to find out all of the details aroundthat there are details and instructions
+on how to use refactor and the templateitself on the forge
+when you run a refactor the UI isactually just online help the
+refactoring does not occur while you'reworking inside of your environment and
+browser it isn't until the refactormodule is deployed that the changes are
+going to be reconnecting the data andrestoring the consistency so during
+development we can move objectsincrementally because we can keep
+publishing refactor and only the newchanges would take effect sometimes we
+need to extract elements from a modulewithout impacting the consumers so this
+is similar to what we just talked aboutwe're removing elements from one module
+to another but in this particular casesome of those modules are now being
+consumed and when we move them we needto make sure that those references are
+still going to remain intact so this isa little bit more complicated and
+requires seven different stepsto make sure everything goes well we'll
+go ahead and talk about this in the nextsession in detail to make sure that we
+understand and can see all the thingsthat are going on as part of this
+processso in review we started by talking about
+the prioritization criteria for fixingviolations this way we know the order in
+which we should do the things that needto be refactored sometimes they were
+factoring can be a little bit higherlevel or more complicated and we want to
+do things like promote loose couplingand follow certain types of patterns so
+refactoring isn't always as simple asjust fixing violations sometimes it's in
+trying to improve our overallarchitecture and some of the patterns
+that we're following sometimes it is assimple as just trying to fix the
+violations and move elements in betweenmodules and if it's a simple one we can
+use the refactor tool to help us movethings around sometimes though we try to
+move elements in between modules andthose elements are being consumed and
+because that's a little trickier we needto look at that and focus on that in
+more detail so that's it for refactoringan application thanks for listening

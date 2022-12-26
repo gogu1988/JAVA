@@ -1,0 +1,60 @@
+In this lesson, you will get
+to know some important tools youcan use to validate your architecture.These tools will
+automatically perform an analysison your Modules and
+applications, allowing you to thencheck the findings and understand how
+you can mitigate them to make sure yourapplications are sound and performant.The tools are Discovery
+and Architecture Dashboard.It is possible to inspect
+your architecture manually,but it will definitely be
+a challenge, especially ifyou are dealing with a complex project.Besides taking a long time, a
+manual validation can lead to overseeingissues and violations that could
+negatively impact your architecture.Using tools to
+inspect your modules and appswill make the
+validation process faster, safer,and more efficient.Two validation tools can be used:Discovery and Architecture Dashboard.Discovery is a visual
+tool that helps you analyze,measure, and understand how
+to improve your architecture.It is available as a free
+download at OutSystems Forge.Discovery can be used to validate
+your modules and application architecture,as it provides information concerning
+the module and application dependenciesas well as the architecture validation
+rules discussed in the previous videos.The tool provides a
+visualization of the modules,which are automatically classified
+in the Architecture Canvas layers,based on their naming convention.However, it is also
+possible to manually change themodule to a different layer at any time.With the modules classified per
+layer, the tool analyzes the dependenciesamong modules and also identifies
+the elements referenced in each module.At any time, you can check the
+elements the module is consuming from others,as well as the elements from the
+module that are being consumed by others.If that is the case, it also
+indicates the architecture validationrules that are not being properly
+applied by pinpointing the consumedelements that are causing the finding
+and suggesting a possible improvement.This feature is
+extremely helpful to identifyany issues in your architecture.Discovery also has a
+view for applications,indicating the application
+dependencies and the validationrules that are not being applied.The second tool is
+Architecture Dashboard,which is the tool to monitor
+the OutSystems technical debt.Architecture Dashboard enables
+users to visualize their applicationportfolios and identify problems,
+while also helping developers follow bestpractices and avoid common pitfalls.This tool is free for customers
+and is fully supported by OutSystems.The Architecture Dashboard
+performs two different types of analyseswhich combine to provide added context
+and greater relevance in findings: CodeAnalysis with the goal of
+uncovering patterns related to performance,security,
+architecture, and maintainability;and Runtime Performance Analysis,
+using the analytics data from LifeTime.The tool displays a list
+of code patterns that can besorted by technical debt and frequency.Each code found has a section
+indicating the impact of the patternand sharing some tips on how to fix it.The tool has a view of the
+applications in the infrastructure,with the possibility of analyzing the
+code patterns within each application.The tool follows a
+color code with five levels:red indicates a low level of agility and
+green indicates a high level of agility.The higher the level
+of agility the better,since they have a smaller
+number of code patterns found,or patterns that are
+not as impactful as others.Architecture Dashboard also
+provides a view of the moduleswithin each application with a
+similar color code and allows an analysisof the code patterns within each module.Different team members with
+different focuses and needs can use bothDiscovery and Architecture Dashboard.For an architect, it will help
+check the technical debt of all the appsin the infrastructure and
+understand how an architecture is evolving.It will allow team leads to check
+the technical debt of their team's apps.It is also useful for
+Developers, who can find andfix technical debt in an app and make
+sure they are following best practices.In the next lesson, you will
+see demos of these tools, tohelp you better understand how you can
+use them to validate your architecture.

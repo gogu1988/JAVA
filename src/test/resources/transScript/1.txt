@@ -1,0 +1,56 @@
+Welcome!In this lesson, we will
+explain why it is important todesign a good application architecture.To get there, we will talk about
+what building quality software means andexplore the typical issues that surface
+when architectural concerns are lacking.Why is application
+architecture important whenbuilding quality software solutions?If we go back to
+1991, the InternationalStandards Organization
+(ISO), and the InternationalElectrotechnical Commission
+(IEC), put together a standardon the quality of software solutions.This standard included
+several different dimensions.Usability from the
+point of view of the users.Functionality as a set of
+functions that satisfy needs.Efficiency, which
+relates the performanceto the amount of resources used.Maintainability, which relates to
+the effort needed to make modifications.Portability, which defines the ability
+to move software between environments.And Reliability, which ensures
+that a software solution can maintainits performance over a period of time.Later on, in 2011,
+the standard was updated.Security was added to
+ensure that software solutionscan protect information and data.Compatibility was also added as a
+way to ensure that a piece of softwarecan work together with other systems.Building quality
+software is important, and allof these dimensions are quite relevant.Having a well-defined
+software architecture allows you tothink ahead in all of these dimensions.So what are some of the
+typical issues that arisedue to a lack of architectural concerns?When services for
+core business concepts arenot correctly isolated and
+abstracted, less code reuse exists,and business rules tend to
+be spread all over the place.Dependencies between
+systems that are notcorrectly isolated become unmanageable.Updating or replacing a system has a
+snowball effect on the remaining parts.When we change one thing in
+the code, another part breaks.Legacy systems tend to
+take longer to change and adaptto the different needs and requirements.Sometimes the technology is
+obsolete, and the core information accumulatedcan obstruct its replacement.Without a good plan and
+well-defined application architecture,you can end up with what we
+might call a "Spaghetti Architecture."Such systems can hinder future
+changes as they become less flexibleand much more difficult to manage.One small change in one component ...often creates a
+series of complex, cascadingeffects on the other components.Sometimes this is also known as
+'tightly coupled architecture,'or 'brittle architecture.'So, why is architecture important?If you spend time thinking
+about and discussing architecture,it will increase awareness and
+understanding of the solution.It also helps create
+common ground among allthe people and teams that are involved.The project complexity
+becomes more evident asthe different systems get represented.An appropriate level of
+abstraction in modelinghelps to reduce the emerging
+complexity by focusing on the relevant propertiesand omitting irrelevant detail, thus
+leading to a simpler representation.By managing the complexity, you
+may actually reduce the overall risk.We need to evaluate a
+system's architecture for its capacityto support the quality attributes
+that meet the organization's goals.Architecture evaluation is a
+cost-effective way of mitigatingsubstantial risks and ensuring success.Thinking about the complexity and the
+risks will help you support planning.This way, you will do a better job
+anticipating and building solutionsthat will be better understood.As you are going
+through the building process,it can also facilitate change.When something comes
+up that requires you toveer from the original design or path,
+the architecture of your system can showyou exactly what needs to change and
+help with communication and planning.Finally, all these
+benefits can help youreduce the overall cost of your project.As you can see, spending
+time thinking about architecturecan provide a lot of different benefits.These benefits are not only
+technical, they also affect how you operate,and the overall
+visibility of how you build things.In the next lesson,
+we will introduce youto the OutSystems Architecture Canvas.

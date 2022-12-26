@@ -1,0 +1,157 @@
+Hi there, and welcome to this session on
+Extracting Elements without ImpactingConsumers. So, extracting elements is an
+approach to refactoring that we can usewhen we need to pull something out of a
+particular module that is being consumedby other modules so we'd like to go
+ahead and break up the original moduleand extract things without impacting the
+consumers so we wouldn't want to have tochange anything but the piece of code
+that seems to be the problem that we'retrying to refactor so we're gonna go
+ahead and explain that and we'll startby looking at in the big picture and all
+in one view but then we'll actuallybreak it down into a step by step and
+we'll look at detailed views of each ofthose steps and we're going to be
+looking at a particular scenario andwhile we look through that scenario by
+the time we get to the end we just wantto mention other scenarios that this
+process will work for so let's go aheadand get started so if we think of
+extracting a service without impactingconsumers and we think of the most
+typical scenario that we will find thisin that would be when we have an end
+user module which we'll call X and Xhappens to have the end user elements
+that we would expect but there are alsoa number of other elements that are
+being reused and consumed by othermodules maybe they're being consumed by
+other end-user modules or anorchestration module maybe even some of
+the things here are being reused by acore module but what's important is that
+we identify the elements that are beingconsumed and we want to sort of refactor
+and get those out of this module so thatwe don't have any sideways references
+and we don't have any upward referencesso to be able to do that
+we'll make a clone so we'll take ouroriginal module X will now have a clone
+of it which will be called clone of Xand with these two duplicate copies what
+we want to do is take the first one andrename it and call it X underscore CS
+for the core serviceand that we renamed it this way because
+this is going to be the module that isgoing to contain all of the consumed
+elements that we care aboutnow we'll also take our duplicate clone
+and we're going to rename that X andwe're going to give it the name of the
+original module and the reason we dothat is so that when these end-user
+components that are being accessed likescreens if we give it the same name then
+none of the URLs for the screens thatwe've created will be broken so we still
+have to duplicate copies of our originalmodule which have been called X we have
+a newer copy which is now called X andwe have the original copy which has
+underscore CS for core service so whatwe would need to do is come in to this
+module and only keep the elements insideof it that are being consumed and any of
+their dependencies so basically we'regoing to go into this module and we're
+going to delete all of the end-userelements and only keep the reusable
+service and we'll go over to ourduplicate copy that we've called X and
+we'll do the opposite we'll remove allof the consumed components all of the
+core service components and we'll onlykeep the end-user modules and user
+elements in the module now this createsa problem for this particular module and
+the fact that this module needs some ofthose consumed services and it no longer
+has them so true change would be givingus an error here but what we can do is
+we can create a reference to the newcore service module that's been created
+and now these two components will beconsistent and will be fine so what
+we've really done is taken one modulethat got too bulky and and/or
+accidentally started making availablereusable elements and we've broken it
+into two pieces but we've done it in away that doesn't affect any of the
+consumers and doesn't affect any of theend-users that are trying to get to the
+screennow I went through these seven steps
+pretty fast and if you didn't follow allof that do not be concerned we're going
+to go through each step step by step andin a little bit better way from a
+graphics perspective to help youunderstand it a little better so if we
+go step by step and say alright what didwe do in the first step well we said we
+wanted to identify consumed elements soto be able to do that we looked inside
+of our module X and we found some endusers components that we expected but we
+also found something that looked morelike a service that was being consumed
+so we identified which elements arebeing consumed and we started thinking
+about we need to get these out and andrefactor them into their own module so
+the second step is to clone this moduleso if we officially clone the module
+then we get clone of X and over here youcan see we have the end-user components
+the elements and the consumed elementsso now we have two duplicate copies
+again that we talked about and and theyare clones of each other so the third
+step is to rename our original module Xto X for the core service so if we went
+ahead and renamed this now we have Xcore service and we don't really have
+this other module because now it's justbeen renamed and what's important here
+is what we mentioned which is theoriginal module is now a core module it
+still has these consumed elements so noone who is actually consuming any of
+these elements will end up with any typeof error the renaming doesn't affect
+these elements that are inside of themodule so the fourth step was to rename
+the clone and give it the original namewhich was X so if we go ahead and rename
+the clone of X to X then what we'rereally left with is just X and X under
+store cs4 core service our clone modulegets the name of the original module and
+that's what helps our URLs not beingaffected
+okay so step 5 we want to keep theconsumed elements in the new X under X
+underscore core service and delete theothers so what we're really doing is to
+the module down here we're getting ridof the UI elements that we don't need
+because if this is going to be a coreservice we only want the things that are
+being consumed and once we've done thisthis no longer is an end user module in
+any way it doesn't have any end userelements so it is a core service so if
+we put it on the canvas it should be ayellow core service module so here we've
+gone ahead and changed the color stepsix says go to our clone that has the
+original name and delete all theelements that we kept in the core
+service because all we really want inthis particular module is the end user
+elements so if we delete the consumedelements that doesn't create any kinds
+of problems here it doesn't change theway the actual module is being viewed
+but these end-user modules werereferencing the consumed elements that
+were inside of the module to begin withso what your change is going to throw an
+error and say that we have a problembut it's fairly easy for us to go ahead
+and fix that problem because all we needto do is create the reference for X to
+get back to the consumed elements so allwe do is we create a reference and now
+these two modules together are providingthe exact same components but we've now
+factored out the core service so it canbe consumed by other modules besides the
+two that we have here so the referenceresolves all the broken dependencies
+that we had in X and all the resourcesare now reconnected without any problems
+so this gives us you know that wholescenario in a very detailed step-by-step
+process so again to kind of summarize wego in and identify the consumed elements
+we make a clone that gives us aduplicate copy we rename this one
+so it can be a core service and then werename the clone so it can be the
+original as far as the user interfaceelements are concerned we delete the
+things that we don't need from the coreservice we delete the things that we
+don't need from the end-user module andthen we just create the reference back
+so that we end up with what we need soif you try to think of this as a in a
+very high high level summary way what westarted with was a module that really
+had two sets of elements inside of itand what we did in our seven step
+process is managed to break it apartinto two different modules that
+reference the the end user referencesthe consumed components but it really
+this is all we did and it took us anumber of steps to get here but we
+looked at the elements we identifiedinside of here and broke them up so that
+they can be contained separately indifferent modules and now this one
+becomes a highly reusable servicebecause we don't want any reusable
+services in an end-user module so thisis you know the summary of what we what
+we did now something that's important tonote is that sometimes people will get
+caught up in oh there's a seven stepprocess and we're always looking for the
+end-user component and then the consumedcomponent and we're always going to
+break things up that way well there area lot of different scenarios that could
+occur and the reason we named thismodule the the idea of extracting
+elements is that we could have a modulethat unfortunately not only has its end
+user capabilities and it has things thatare being consumed but they're two
+totally different sets of things thatare being consumed by different types of
+modules and different types of consumersso in that case we we may go through
+more a very similar set of steps butmore than seven steps to extract all of
+these pieces but we might end up doingis taking consumed one and put it inside
+of a core service module we might takeconsume two and put it at a different
+core service module and then we might goahead and take our end user elements and
+keep them inthe ex and user module and in this case
+maybe the end-user module needs consumedone elements but it doesn't actually use
+any of the consumed two elements becausesome other consumer is actually using
+consumed two elements not the X modulethat that was part of the original
+module so this scenario can have anumber of different ways and and this is
+one that's fairly normal where sometimesyou go to refactor and you see not just
+one set of things that are beingconsumed but really two in which it
+wouldn't make sense for us to go aheadand put consumed one and consume two in
+the same module because these twoconsumers of those components may have
+different life cycles and these thingsmay be changed at different rates so we
+don't always have just one servicethat's being consumed that's one
+scenario to think about the otherscenario to think about is that we've
+been looking at end user and coreservices but those aren't the only types
+of modules and the only layers that thisscenario could happen in what if we
+started with a core service that wefound another reusable service inside of
+but that reusable service was atechnical component it didn't have any
+business logic it didn't have any typeof business concepts so it was a
+technical thing well we could refactorthe core service from the library and do
+the same type of thing and in fact thishappens occasionally this is a little
+bit easier to refactor because you canmake the clone and you don't have to
+worry so much about the naming becausewe're not trying to keep the URL for the
+end users but this is another very validscenario that can occur and we can use
+this same type of refactoring techniqueto be able to go ahead and solve this
+problemso in review in this session we talked
+about extracting elements withoutimpacting the consumer and we went
+through it in a detailed step-by-stepfashion and talked about different
+scenarios that can occur so hopefullythis helps you with refactoring and
+we'll make it easier for you to havereally good modules and really good
+architectures in the futureso that's it for extracting elements
+with it without impacting consumersthanks for listening

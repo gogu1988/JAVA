@@ -1,0 +1,61 @@
+In this lesson, you will be
+introduced to the architecture design process.This three-step process will help you
+design your application architecture.It is fundamental to align your
+architecture with your business goals.Business must orient architecture,
+so business needs and concepts shouldbe properly translated into Modules.This strategy allows the Modules
+to evolve and scale with business,while ensuring independent
+lifecycles between different lines of business.The three steps for
+architecture design are Disclose,Organize, and Assemble.The first step is
+where business concepts,integration needs, and non-functionalrequirements are disclosed.Identifying relevant user
+stories can achieve this disclosure.Understanding who will
+interact or access the application,what the roles are,
+and the kind of differentactions each person can perform are
+also important questions to answer.Analyzing existing
+documentation, or simply by having aconversation with business
+stakeholders will also add valuable context.The information architecture as
+recognized by the business users.Either talking with the
+users or analyzing an existingsystem that you are going to augment
+or replace will help you get a clearview of the information architecture.We need to understand
+the integration technologythat will be involved in the project.So it's important to disclose
+what information will be consumedfrom external sources or systems.It is also important to
+disclose the needed integrations.The type of API,
+communication protocol,I/O structure, message headers,and others.User experience is another key factor.Will accessibility be a requirement?What types of channels are planned?Is this a mobile-only
+app, or also a web app?Different roles might use
+or require different channels,which results in a
+different user experience.It is important to disclose as many
+concepts from the beginning as possible.As the project moves
+forward, you might end up disclosingmore concepts and finding more details.Missing major concepts at
+the beginning might compromisethe future of your applications,
+leading to complex refactoring later on.From the Disclose
+step, we move to Organize.Here, concepts will be added to
+the layers of the Architecture Canvas.As you start
+organizing concepts, you canactually disclose some more concepts.In the end, both
+Disclose and Organize work intandem and require a bit of iteration.Interface-related concepts and
+processes are placed at the end-user layer.Core business concepts
+end up in the core layer.While integration needs and
+non-functional requirements shouldbe placed in the foundation layer.Keep in mind that during the
+Disclose and Organize steps,we are still talking about concepts,
+not Modules nor application artifacts.The third and final step is where
+concepts are assembled into Modules.In this step, you should
+follow a few principles.The concepts that relate
+to others should be joined.For instance, if theconcepts Customer and
+Claim are related, theyshould be joined into the same Module.However, concepts
+with different lifecyclesshould be split into different
+Modules, even if they are related.For example, the Customer and
+Contract concepts can be related,but if you realize that some of
+the customers don't have a contract,it means they have different
+lifecycles and therefore shouldn't be joined.The third principle says to isolate
+reusable logic from integration logic.Reusable logic should be
+isolated in the core layer,while integration logic
+ends up in the foundation layer.This protects the reusable core logic
+from external system changes by keepingthem independent from each other.Finally, when
+possible, you should applyknown architectural design patterns.In the beginning, this
+may not be 100% clear,but as you move on you'll get
+to know more patterns and definea better and more robust architecture.Once you complete the process, you
+end up with an "architecture blueprint."The blueprint shows each
+Module in the corresponding layer.From there, you should now add
+the dependencies between Modules.Doing so gives you an
+initial idea of what they need andhow each Module relates to the others.During the project,
+you need to keep iteratingthe three steps of the process.As you disclose new
+concepts, you need to organizethem and assemble them into the canvas.In the next lesson, we'll
+put this process into practice.

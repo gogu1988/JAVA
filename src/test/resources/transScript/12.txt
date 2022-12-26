@@ -1,0 +1,20 @@
+Let's see
+Architecture Dashboard in action!If this is your first time
+using Architecture Dashboard,you'll need to set it up.Log in and follow the
+instructions on the Screen.In our case, the
+setup is already completed.After login, Architecture Dashboard's
+initial Screen shows a view of all appsthat are present in your environment.Each app has a color that
+represents its agility score.The agility score has five levels.From red......to green.Red indicates low agility,
+while green indicates higher agility.Lower agility means that
+the app is manifesting ahigher number of or more severe issues.Issues can be related with
+performance, security, architecture,or maintainability.For each pattern, you can check
+where the finding actually occurs.In this case, it is in a
+SQL query named CheckUsageApps.The SQL query is actually defined
+inside the VMF_ConfigurationCore Module.Note that Architecture Dashboard
+does not fix the findings automatically;that is up to the developers.Another useful feature in
+Architecture Dashboard is thatit opens directly in Service Studio.Let's select another app.Instead of opening the app
+report, let's open this app's modules.Here, we can see the app's modules,
+along with its agility score color code.We can now open the
+module report and seethe findings for this particular module.This result is similar to
+what we saw earlier for apps.Thank you for watching this quick
+walkthrough of Architecture Dashboard.Keep increasing your agility score!

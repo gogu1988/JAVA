@@ -1,0 +1,20 @@
+We already have Service
+Studio opened, where we'll seethe Style Guide architecture in action.To start, we will
+create a new application.We'll start from scratch.In this demo, we'll
+use the Reactive Web App.We have to define the
+basic information about our app.Now that we have our app
+created, we'll create the first Module.This Module will be based on
+the Reactive Web App template.The first Module created
+should be the Theme Module.The Module will be a
+clone of the template,and hence have the
+theme defined inside of it.If we look into the theme created...We can see in its properties that
+it's based on the OutSystems UI theme.We won't change the theme in
+this demo, but we'll create anotherModule after publishing this one.Back to the Directory application tab...We'll now create the
+second Module inside this app.This is an end-user Module,
+where Screens should be defined.If we look at the themes, we can
+see that we now have a referenceto the theme from the first Module.Now, let's create a
+Screen just to test the app.Pick a Screen template and set its name.To handle the errors and
+ensure a good user experience, weshould add a Global Exception Handler.It will be simple,
+just to clear the warnings.Let's just add some
+content to our Screen.And finally, publish it.There we have it.The Screen based on the theme
+defined in the Directory_Th Module,which in turn is based on OutSystems UI.

@@ -1,0 +1,81 @@
+In this lesson, you
+will learn why validatingyour application's composition is
+important and the four validationrules that can help with that.As we have seen, our goal is to
+promote the correct abstractionof reusable services and components,
+optimize the lifecycle independence,and minimize the impact
+of changes, which makesvalidating architecture an
+important step to prevent and avoid mistakesthat will negatively impact these goals.A typical OutSystems factory
+usually consists of multiple applications.Although validating the modules
+within each application is important,it is not enough to assure that the
+application's composition is correct.Therefore, it is important to
+validate your architecture atapplication level to ensure that it is
+sound and easy to deploy and maintain.For that reason, we
+also need to understandthe rules to validate the application
+composition in the Architecture Canvas.At this point, you should be
+familiar with the rules and recommendationsfor validating modules' architecture.If these concepts are
+not clear yet, please watchthe previous video on module validation.Four rules should be
+applied at the application level.We'll get to each one in
+detail during this session.Let's take a look at rule number one.The first rule for a correct
+application composition is to simplyapply the rules and
+recommendations for modules we learned earlier.This means you must
+have no upward references,&nbsp;no side references
+between end-user Modules,&nbsp;and no circular references.If these rules are not
+correctly applied in each application,there is no point in trying to
+have a correct application composition.We'll now move on to the second rule.Now, you should apply the same rules
+used for Modules to your applications,considering the references between them.Remember: the topmost Module
+inside an application definesthe canvas layer where it belongs.Let's take a look at an example.Imagine that you created a project
+that consists of one end-user application.The app is composed
+of an end-user module,two core modules,
+and a foundation module.The app follows all the
+validation rules for modules,so everything seems
+perfect and ready to deploy.It makes sense to
+package everything togetherinto the same
+end-user application, whichwill work just fine for this project.Now, let's add a second
+project with a similar structure.You have created a
+second end-user application,and everything is still okay in
+terms of the module's architecture,so it is also ready for deployment.But what happens if, in the
+context of a third project,End-user App Number 2 needs to
+consume a functionality from Module Core B?If you only think about modules,
+no architecture issues are present,and this is a perfectly
+normal downward reference.However, in terms of
+application composition,now you are creating a side
+reference across two end-user applications.This situation is undesirable
+because now you can't deploy the firstend-user application without including
+the second one in the deployment plan.It is important to remember that
+an end-user application should notprovide services to other applications.In this case, the correct
+thing to do is isolate thecommon modules that provide the
+services that multiple apps will consume.This common core application
+will support the functionalityneeded to both end-user applications.When you decide to share
+services with other apps,you should always try to isolate the
+common modules in common applications.This strategy will help
+with your project flexibility,since you can work
+in separate componentswithout impacting all the others.Let's now look at rule three.The third rule states that you
+should not mix application ownership.From the IT
+perspective, owners are responsiblefor the functionality in the modules.Having more than one owner
+for an application resultsin complex deployment
+management, since accountability forwhat has been changed becomes unclear.If it is not possible to
+concentrate the ownership of an application,consider splitting it in such a
+way that ownership is clearly defined.Finally, let's go over
+the fourth and last rule.The fourth rule states that
+we should not mix sponsors.Application sponsors
+usually have differentdemands and work at different paces.Let's imagine you have a portal
+that allows executing simulations overdifferent insurance Lines of Business.If all the Lines of Business
+are under the same application,any change made to one of them cannot
+be released independently of the others.Therefore, the slowest one
+will dictate the release cycle.By spliting into multiple apps,
+each Line of Business can determinethe pace of its own deliverables,
+if its applications are independent.You should try to identify the
+components and apps that are commonand that need to be
+governed together, but isolatethe parts that can be independent.In this example, the end-user
+application called Simulation Portalis common to all Lines of Business
+and could belong to a different sponsorsuch as the marketing department.Let's recap all four validation
+rules for application compositionas discussed in this session.The first rule says to layer the
+modules correctly and follow the validationrules and recommendations for modules.The second rule states that you
+should layer your applications correctly.The third rule states that
+you should not mix owners.Clearly-defined ownership of the apps
+being created is key for accountability.Finally, the fourth
+rule is: Don’t mix sponsors.Each Line of Business
+should have a separate sponsor,so that one app does not
+depend on the release of another.Now that you know
+these rules and concepts,don’t miss the next lesson,
+where we will present the tools youcan use to validate your architecture.

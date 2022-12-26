@@ -1,0 +1,27 @@
+Welcome to this
+demo, where we'll see theDiscovery architecture tool in action.We already have a series
+of apps in our environment.Let's start by
+installing Discovery from Forge.Search for the Discovery component...and install it!Wait for the installation to finish.Now, let's open
+Discovery and do a walkthrough.Discovery's initial
+screen provides an overview ofall apps and modules in the environment.At first, you might not see any
+data. Wait a bit and refresh whileDiscovery does the initial loading.After that, we can now see
+the total number of apps...and the number of modules.Below, we also have
+the findings that havebeen detected for both apps and modules.We have findings for apps...and also for modules.We'll see these in more detail next.If we navigate to the Module Canvas...we can see all the modules.Modules were automatically
+categorized into a specificlayer based on naming conventions.In each module, you can see the
+number of consumer modules and producers.Clicking on each arrow reveals the
+list of elements that are referenced.When a finding exists, you
+will see an indication of that,as it happens in this case.Clicking it reveals which
+elements are causing the finding.All of this information will
+help you understand the overallarchitecture of your apps and modules.As mentioned before, the
+modules were categorized automatically,but how?The way modules are
+categorized can be configured.In this screen, you
+can customize the existingnaming conventions or add your own.If you change the
+configuration, you canrun the auto classification for modules.Just click the 'Auto Classify' button.You can also fine tune the
+classification on your own.On each module, you can
+change the layer defined.The architecture
+will be revalidated basedon the rules of the Architecture Canvas.If we move to the apps view...Here, the view is similar to
+the one we saw for modules before,although here we see apps.Another important feature of
+Discovery is that it works based on snapshots.Therefore, if you need
+to refresh the analysis,simply capture a new
+snapshot of the environment.That's it!Explore Discovery and keep the
+number of findings close to zero.See you at the next lesson.

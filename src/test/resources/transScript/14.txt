@@ -1,0 +1,31 @@
+Hi there, and welcome to the Architecture
+Patterns in OutSystems course overview.The topic of architectural patterns is a
+natural follow-on once we understand thebasics of architecture and how to design
+applications looking for reusablepatterns and things that will be best
+practices makes a lot of sense so thiscourse will focus on that there are two
+sections to this course one section thatfocuses on the library module patterns
+and another section that focuses on coremodule patterns and you can see by the
+two sections that we look at thepatterns according to the layer of the
+four layer canvas that those patternsmight fall into so on the lowest level
+at the library module pattern layer wewould look at the extension pattern and
+the connector pattern and for theconnector pattern it's very important
+sometimes to make sure that the AP isthat we're using have the correct
+granularity so we'll look at all ofthose topics regarding the library
+module layer and then we'll move on tothe core module layer and the patterns
+that we might find there so the mostcommon pattern is the core entity
+pattern which would make sense given thelayer that we're in and then if those
+core entities are actually being servedfrom external systems we end up with
+what we call the external core servicepattern and there's a base pattern for
+that and several different variations sowe'll discuss all of those and then
+there's also a transparency servicepattern that is very common in the core
+module layer we talked about the librarymodules first because they're sort of
+the base and they're the things thatwill connect us to the external systems
+and we talked about the core modulepattern second because in something like
+the external core service pattern weactually use connectors and other types
+of things at different times so some ofthe core module patterns are actually
+aggregates of different types ofpatterns
+so these can be a little bit morecomplex and involved but we'll review
+both sets of patterns in two differentsections and at the end of that we
+should understand some of the bestpatterns that are available for us to
+create highly reusable services andthat's it for this course overview so
+let's go ahead and get started

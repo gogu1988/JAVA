@@ -1,0 +1,52 @@
+In this session, we'll get back
+to what OutSystems applications are.After that, we'll see how
+Modules are composed into thearchitecture canvas for applications.All of this will get
+more clear as we returnto the Doctors App example and apply
+the application composition process.If you remember from
+Service Studio, an applicationis composed of a set of Modules.These Modules can contain
+any kind of elements: screens,logic, data, and even
+processes. But why is this important?In OutSystems, when
+you deploy your code intothe Quality or Production
+environments, you actually deploy applications.So, you have to select one or
+more apps and then deploy them.When one app has dependecies on
+others, in order to actually move forwardwith the deployment you may need to
+add more apps to your deployment plan.So, in this context, an
+application is the smallest deployment unit.Similar to Modules,
+applications also have a canvas.The layers are the same;
+however, within each layerwe will have apps instead of Modules.An app layer is defined by the
+topmost Module layer inside of it.Let's see this in more detail.If the app only
+contains Foundation Modules,then it is a Foundation app.If the app is composed of
+Core Modules, then it's Core app.If the app is composed of
+both Core and Foundation Modules,the app is still
+categorized as a Core app.The topmost Module is a
+Core Module; therefore,it is a Core app.Apps composed only of End-User
+Modules are considered End-User apps.If the app contains core or
+foundation Modules as well as end-userModules it is still an End-User app.The topmost Module
+is an End-User Module.The same is true if
+the app contains all kindsof Modules - it is also an End-User app.Let's recover our running
+example — the Doctors app.Now, by looking at the
+dependencies between Modules,let's try to group them and initiate
+the application composition process.First, to the right we have an empty
+Architecture Canvas for applications.We'll move the
+Modules from the left canvas,group them, and place them
+into the canvas to the right.Remember that the
+Doctor mobile core Widgets,mobile business logic,
+and the Doctor App themeare exclusive to the Doctor application.So we can package them together
+into the Doctor App application.As the topmost Module of
+this application is an End-UserModule,this is an End-User application.Similarly, the
+Planner theme, core Widgets,and the corresponding Web Module can
+be packaged into the same application.So you will have the
+Appointment Planner application.Once again, this is also
+an End-User application,since it contains one End-User Module.In the core layer,
+an option is to composeall the core services and business
+logic Modules into a single application.So the Hospital Core
+Services applicationcould be created with these Modules.Since all Modules are core
+Modules, this is a Core application.Push Notifications Plugin Module
+should be kept in its own application.Therefore, the Push
+Notification Plugin application is created.Both integration services
+can be packaged together.So Appointment
+Integration Services is defined.Here, since the topmost Module of
+this application is a Foundation Module,this is a Foundation application.So here's one possible
+outcome that constitutes a validarchitecture in terms of applications.Remember that the goal is to
+make your deployments easier.Make sure your applications
+reflect the different life cyclesof the Modules and adjust as needed.

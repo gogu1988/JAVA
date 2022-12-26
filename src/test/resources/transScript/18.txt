@@ -1,0 +1,129 @@
+Hi there, and welcome to this session on
+Local Storage and Synchronization.In this session we'd like to discuss how
+mobile applications are allowed to uselocal storage which can help them limit
+the number of server-side calls thatneed to be made we also want to discuss
+synchronizing data if mobileapplications can keep data on the client
+side which is the local storage then howoften they synchronize the data can be
+in a very important part of theapplication and knowing the frequency
+the size of the data the number oftransactions and the granularity of the
+data that needs to be synchronizedis very important to the overall
+performance and the experience thatusers will get so we have a lot to talk
+about let's go ahead and get startedthis may look familiar
+it is the big picture of out systems inan enterprise we can build applications
+or microsites which will be supported byreusable services these reusable
+services can be exposed via api's andthey can leverage external capabilities
+through integration services theseservices can also implement
+non-functional requirements or plug inservices that would allow us to take
+advantage of some of the other mobiledevice features and given this
+environment let's look at some of thearchitectural best practices for mobile
+applications one good practice in mobilearchitecture is to use local storage
+it's important to understand thedifference between central or server
+side storage and local storage that isavailable on the mobile device in this
+example we have some banking coreservices they store information on the
+server side and support to differentmobile applications one is for the
+company agents who need to accessaccounts of customers they are managing
+and the other is a mobile banking app toallow customers to manage their own
+accountseach application will have a core
+service of its own in its own module toimplement all of the client-side logic
+and entities that would support each ofthese use cases one key aspect of mobile
+application architecture that we want totake advantage of is to use the local
+storage effectively we want to optimizethe local storage and the client-side
+logic for each of the end-userapplications because each will have its
+own different use cases for instancesince the mobile banking app only deals
+with one customer account at a time itcan be optimized to retrieve and store
+less data it will require less logicthan the mobile agent app which probably
+has to access and manage multipleaccounts and may have more complicated
+logic optimizing client-side code anddata models is important because the
+resources can be loaded and cashed intolocal storage for better performance and
+to support offline use cases storingresources locally requires that we will
+synchronize that information with theserver at some point that
+synchronization approach should beoptimized for each specific use case
+because performance is crucial to eachof these mobile applications now we will
+need to map server-side static entitiesinto local entities because the local
+storage does not contain the concept ofa static entity so we may be able to
+reduce the overall amount of informationthat we keep in local storage in general
+to support the specific applicationsthat are out there so these local
+entities may end up being a little bitsmaller than their server-side
+counterparts because the server-sidecounterparts may be actually supporting
+multiple use cases at the same timeanother good practice that is closely
+related to using local storage islimiting server-side calls in a mobile
+application we'd like to run as muchlogic as possible on the client-side
+server-side calls will allow us toaccess centrally stored information and
+perform transactions regarding thatinformation so one of the first things
+we should do is limit server-side callsto online transactions or
+synchronizations so our applicationsshould be performing as much of the work
+as possible on the client side and onlycall the server when those online
+transactions something like a paymentwould occur
+we'd also call the server when we areperforming work that needs the actual
+latest information requiring us tosynchronize the data to our local stored
+data now we should also avoid makingdirect calls from client logic all the
+way to back-end systems there areseveral reasons to avoid this from a
+security perspective we don't want toexpose our internal services from our
+back-end systems to end-userapplications from a performance
+perspective it would also be good tocache some of the backend system
+information on the server side andoptimize the amount of data that will
+actually be sent to the app and finallyfrom a maintainability standpoint the
+call to the back-end service wouldrequire JavaScript code - from the app
+and that code can be harder to maintainso we can see that limiting server-side
+calls that can be helpful and we shouldtry to limit this as much as we can to
+online transactions and synchronizationswhen we do need synchronizations there
+are some other things we should bethinking aboutsynchronization between an app and the
+server can be done in many differentways so there's a few basic tips that it
+helps to follow some of those revolvearound the frequency and amount of data
+in the synchronization so first it helpsnot to sync on every screen or online
+event some applications actually containlogic in the header of every screen to
+refresh local data from the serversimilarly some apps will try to refresh
+the data every time it comes back onlinethese approaches will cause a
+synchronization request every time ascreen is displayed or we come back
+online regardless of whether we need newdata or we think that the centralized
+data may have somehow changed thesesynchronizations require a server call
+and unless we're careful about thelatency of that network call could end
+up actually delaying the rendering ofthe screen and hurt the user experience
+also if the size of the informationbeing synchronized is very large the
+call may delay the time it takes and maytake quite a while to actually finish so
+due to these types of issues we need tothink about the correct synchronization
+frequency for instance it makes sense tosynchronize at the start of a process
+and when we're online to actually syncinformation to the local storage now
+we'd want to do that because that way wehave all the information we need to be
+able to work on whatever process may beoccurring it also makes sense to
+synchronize at the end of a transactionwhile we're online to synchronize all of
+the data back to the server to make surethe server has all the information about
+the completed process or transactionthat occurred now it's also important to
+consider each sake situation and onlysynchronize the data that we need for
+that particular use case so when wethink back to the mobile agent app we
+may want to synchronize all of theaccounts summaries at the start of the
+session so that we can see the list ofall of those accounts
+but then we would only sink and accountin detail when that specific account has
+been selected so these are some of thegood ideas for frequency and data but
+there's also a few more dimensions tosynchronization other things to worry
+about regarding synchronization would betransactions and granularity we should
+avoid long synchronizations that occurin a single transaction slow responses
+from these types of synchronizations canimpact the user experience and
+potentially caused an app to seemunresponsive sometimes requests that we
+might have expected to be made inparallel may not be able to be made that
+way due to multiple apps sharing theresources on the device also long
+synchronizations can cause problems ifthey're constantly interrupted by the
+device being offline due to lack ofnetwork connection or the device going
+into standby mode it's also important toensure the correct granularity and order
+for synchronizations when synchronizinginformation from several entities there
+may be dependencies among those entitiessuch as synchronizing customer
+information before synchronizing thecontracts which reference those
+customers these types ofsynchronizations can be very complex
+because there are several entitiesinvolved to help manage those types of
+synchronizations it can help tostructure them and make them incremental
+by entity and have partial commits thatway the synchronization is prepared for
+interruptions and retry efforts withouthaving to repeat the entire
+synchronization from the very start wecan structure synchronizations to handle
+each type of entity and sometimes if theinformation is large enough we might
+even want to have the information for asingle entity be broken into chunks so
+that if interruptions occur we can kindof deal with those and expect them
+so in review in this session we talkedabout how mobile applications can use
+local storage to limit the number ofserver-side calls that are going to be
+made mobile apps also will need tosynchronize data from the mobile device
+to the server and back we want to beable to control the frequency of those
+synchronizations the size of data in thesynchronizations the number of
+transactions and the overall granularityof the data going back and forth this
+has a huge impact on the overallperformance of the applications and we
+also want to make sure that thosesynchronizations occur in a highly
+reliable type of way so that's it forlocal storage and synchronization thanks
+for listening

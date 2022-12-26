@@ -1,0 +1,29 @@
+Hi there, and welcome to the Mobile
+Application Architecture course overview.Mobile devices have a number of
+different characteristics that we needto take into account when designing the
+architecture for those applicationsthings like the size of the screen to
+being able to store files locally on thedevice and use some of the native
+features of the device like GPS locationand the camera all can affect the
+architecture of the applications that wewould like to build so in this course we
+have two different sections one thatfocuses on local storage and
+synchronization and another that focuseson the plugins UI and security in the
+first section of the course we talkedabout how to use local storage to store
+things on the device and limit thenumber of server-side calls that need to
+be madewe also discussed synchronization
+factors when calling to the server andsynchronizing the data things like
+frequency the size of the data thegranularity and types of transactions
+that need to occur all can affect howthat should happen so we discuss all of
+those in the first section in the secondsection of the course we discuss plugins
+UI and security plugins that will helpus access the native features of the
+device can be very important andunderstanding how we can create those
+and then interact with the nativefeatures is very important we'll also
+talk about the UI approach for definingthe look and feel and the themes of
+things inside of mobile devices and howCSS can affect that and we'll also talk
+about security because the mobile deviceis separate making sure security for the
+applications on those devices is verysecure is important so we need to
+understand more about authenticationencryption and SSL pinning which is a
+particular way to prevent certain typesof attacks all of those can be very
+important so we'll cover those inside ofthe site
+section so a lot of interesting andimportant things to cover in the two
+sections for this course so that's itfor the course overview let's go ahead
+and get started

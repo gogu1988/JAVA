@@ -1,0 +1,81 @@
+In this lesson, we are
+going to apply the architecturedesign process in a specific
+business case: a Doctors Appointments app.After following the three
+steps of the design process,we will get to the
+architecture blueprint and reference map.We will follow the architecture
+design process for a hospital-related app.This app enables the managing
+of hospital doctors' appointments.In total, we have five
+requirements listed here.We'll go by each one of these as
+we build up our Architecture Canvas.We will start with an empty
+Architecture Canvas by the Disclose step.Starting by the first requirement,
+you'll need to identify the end-userprocesses that needs to be supported.In this case, doctors need to see
+their agenda and their patients' exams,and to be able to select urgent cases.Since these are user
+process concepts, they shouldbe organized in the end-user layer.Here, we are placing concepts into
+the correct layers as we identify them.This is actually part of the
+Organize step in the design process.The "Doctor" represents a
+core business concept thatwill have to be mapped in your system.So the "Doctor" concept
+should be part of the core layer.It is also possible to
+identify the "exam" concept,and to relate each exam to a patient.So both these concepts
+should be taken into account.They too belong to the core layer.Moving on to the second
+requirement: Doctors work in differentunits from different hospitals.Besides doctors, which
+are already represented,we can identify two more
+concepts: Units and Hospitals.Once again, these are
+organized in the core layer.The third requirement allows us
+to expand our canvas a bit more.From it, we learn that Google
+Calendar is used to represent the appointmentsand find the doctors' availability.The "Appointment" core
+business concept can be identified.It is actually based
+on other core concepts.An appointment will
+occur at a given hospital,with a specific
+doctor, and a certain patient.It should also have a
+time slot, along withsome additional information that will
+be represented inside the appointment.The application will
+need to interact with GoogleCalendar to represent appointments
+and to find the doctors' availability.Since this is an
+integration with an external system,it should be part of
+the foundation layer.This is where integrations belong.Regarding the
+fourth requirement, we canextract that doctors will be notified.This will happen via
+text message (SMS) orpush notification when they are online.This result can be achieved
+with external systems; therefore,these should also be
+part of the foundation layer.Finally, requirement
+five tells us about aweb application to manage appointments.In this case, you have one
+more end-user layer concept.For now, the Disclose and
+Organize steps should be over.Next in the process is
+going over the Assemble step.So let's think about how these
+concepts translate into Modules.First, looking at the
+doctor processes, theycan live together in the same mobile
+Module because you don't need to haveseparate lifecycles for these processes.So you assemble these three
+concepts into the Doctor Mobile app.The "Exam" concept
+should live in it's own Module.The same thing happens
+with the "Doctor" concept.And the Patient concept.Here's an example where you can
+merge two concepts into a single Module.Since units are related to
+hospitals, it makes no senseto deal with units without hospitals.So these two will
+become the Hospital Module."Appointment" should be a Module
+orchestrating the other core Modules.Given that you want to
+create a mobile application,we will also need local storage.For that reason, you
+should also create a specificModule to handle the local data and
+synchronization of information betweenthe mobile device and the server.For both the Doctor mobile
+and Appointment Planner web app,Widgets or blocks will be needed.It is a good practice to isolate
+those elements into specific Modules.Google Calendar provide the
+functionality to access the calendar.Text Messages and Push
+Notification Modules provide access to featuresso that doctors can be notified.These should be done through
+integration Modules on the server-side,so web and mobile
+applications can also reuse them.Finally, you can
+have different themes ...... one for the planner
+web application and anotherfor the doctor mobile application.These are all the Modules
+that have been identifiedduring the architecture design process.We call this the
+architecture blueprint, and it showsall Modules in their specific layers.As you identify
+dependencies between Modules,you can add arrows and obtain
+the architecture reference map.Each of the end-user Modules
+depends on the respective theme.Each of the end-user Modules
+also depends on the respectiveWidgets Modules in the core layer.The Doctors app also
+depends on the Push NotificationsPlugin to enable registering with the
+Push Notification third-party service.The Doctor App also
+relies on the Doctor MobileModule for the local storage data,
+which in turn consumes informationfrom the Doctor and Appointment Modules.The Appointment Planner web app
+will need to reference the AppointmentModule in order to manage appointments.As we've mentioned
+before, the AppointmentModule orchestrates the Hospital,
+Doctor, Exam, and Patient Modules.It also relies on the
+Google Calendar, Text Messages,and Push Notifications integrations.The Doctor core Module depends
+on the Exam and Patient Modules.This gets us to the end of our example.Don't miss our next lessons,
+where we will talk about the importanceof naming conventions for
+Modules, using the same example.
