@@ -1,4 +1,4 @@
-package Pattern;
+package Pattern.Numbers;
 
 public class Triangle_Increasing_Numbers {
 

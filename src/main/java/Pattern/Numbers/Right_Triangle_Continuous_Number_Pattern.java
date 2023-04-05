@@ -1,4 +1,4 @@
-package Pattern;
+package Pattern.Numbers;
 
 public class Right_Triangle_Continuous_Number_Pattern {
 

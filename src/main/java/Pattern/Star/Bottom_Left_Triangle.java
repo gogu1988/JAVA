@@ -1,6 +1,6 @@
-package Pattern;
+package Pattern.Star;
 
-public class Right_Triangle_Star_Pattern {
+public class Bottom_Left_Triangle {
 
     public static void StarRightTriangle(int n) {
         for (int a = 0; a < n; a++) {

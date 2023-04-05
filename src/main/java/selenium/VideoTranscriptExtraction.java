@@ -26,7 +26,7 @@ public class VideoTranscriptExtraction {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
         driver.get("http://outsystems.com/training/lesson/2311/why-is-architecture-important?LearningPathId=8");
         System.out.println("Now login");
-        for (int i = 1; i <= 26; i++) {
+        for (int i = 1; i <= 16; i++) {
             System.out.println(p.get(String.valueOf(i)));
             driver.navigate().to((String) p.get(String.valueOf(i)));
             Thread.sleep(5000);
@@ -34,6 +34,7 @@ public class VideoTranscriptExtraction {
             ArrayList<WebElement> transElements = (ArrayList<WebElement>) driver.findElements(By.xpath("//div[@class='transcript-text OSInline']"));
             for (WebElement transElement : transElements) {
                 fw.append(transElement.getAttribute("innerHTML"));
+                fw.append(" ");
 //                fw.newLine();
             }
             fw.flush();

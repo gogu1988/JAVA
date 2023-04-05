@@ -1,6 +1,6 @@
-package Pattern;
+package Pattern.Star;
 
-public class Reverse_Right_Triangle_Star_Pattern {
+public class Top_Right_Triangle {
 
     public static void main(String[] args) {
         int n = 5;

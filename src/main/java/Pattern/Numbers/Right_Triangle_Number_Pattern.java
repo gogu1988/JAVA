@@ -1,4 +1,4 @@
-package Pattern;
+package Pattern.Numbers;
 
 public class Right_Triangle_Number_Pattern {
     public static void StarRightTriangle(int n) {

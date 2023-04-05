@@ -1,4 +1,4 @@
-package Pattern;
+package Pattern.Numbers;
 
 public class Reverse_Triangle_Nummber_Pattern {
 
