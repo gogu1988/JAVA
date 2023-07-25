@@ -22,12 +22,12 @@ public class SendAudio {
         Toolkit toolkit = Toolkit.getDefaultToolkit();
         Clipboard clipboard = toolkit.getSystemClipboard();
 
-        File file = new File("C:\\Users\\govreddy\\IdeaProjects\\JAVA\\src\\test\\resources\\phoneNumbers\\2023Contacts.txt");
+        File file = new File("C:\\Users\\govreddy\\IdeaProjects\\JAVA\\src\\test\\resources\\phoneNumbers\\Polycet\\2023Contacts.txt");
 
         BufferedReader br = new BufferedReader(new FileReader(file));
 
-        BufferedWriter whatsAppFailed = new BufferedWriter(new FileWriter("C:\\Users\\govreddy\\IdeaProjects\\JAVA\\src\\test\\resources\\phoneNumbers\\2023_FAIL.txt", true));
-        BufferedWriter whatsAppPass = new BufferedWriter(new FileWriter("C:\\Users\\govreddy\\IdeaProjects\\JAVA\\src\\test\\resources\\phoneNumbers\\2023_PASS.txt", true));
+        BufferedWriter whatsAppFailed = new BufferedWriter(new FileWriter("C:\\Users\\govreddy\\IdeaProjects\\JAVA\\src\\test\\resources\\phoneNumbers\\Polycet\\2023_FAIL.txt", true));
+        BufferedWriter whatsAppPass = new BufferedWriter(new FileWriter("C:\\Users\\govreddy\\IdeaProjects\\JAVA\\src\\test\\resources\\phoneNumbers\\Polycet\\2023_PASS.txt", true));
 
         Screen screen = new Screen();
 
@@ -103,8 +103,24 @@ public class SendAudio {
                         screen.click(typeMessage);
                         Thread.sleep(2000);
 
-                        StringSelection message = new StringSelection("9804090401");
+                        StringSelection message = new StringSelection("9804090401\n9804090402\n9804090403\nLast Date 10 Jul");
+//                        StringSelection message = new StringSelection("Last Date 10 Jul");
                         clipboard.setContents(message, null);
+
+                        robot.keyPress(KeyEvent.VK_CONTROL);
+                        robot.keyPress(KeyEvent.VK_V);
+                        robot.keyRelease(KeyEvent.VK_V);
+                        robot.keyRelease(KeyEvent.VK_CONTROL);
+
+                        robot.keyPress(KeyEvent.VK_ENTER);
+                        robot.keyRelease(KeyEvent.VK_ENTER);
+                        Thread.sleep(2000);
+
+                        screen.click(typeMessage);
+                        Thread.sleep(2000);
+
+                        StringSelection message_1 = new StringSelection("https://youtu.be/DMe_5Ijbg1s");
+                        clipboard.setContents(message_1, null);
 
                         robot.keyPress(KeyEvent.VK_CONTROL);
                         robot.keyPress(KeyEvent.VK_V);

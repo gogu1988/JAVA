@@ -1,7 +1,6 @@
 package comparable;
 
-import java.util.ArrayList;
-import java.util.Collections;
+import java.util.*;
 
 public class Student implements Comparable<Student> {
 
@@ -26,6 +25,8 @@ public class Student implements Comparable<Student> {
     }
 
     public static void main(String args[]){
+
+        HashSet
         ArrayList<Student> al=new ArrayList<Student>();
         al.add(new Student(106,"Vijay",'c'));
         al.add(new Student(101,"Ajay",'a'));

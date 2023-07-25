@@ -30,6 +30,8 @@ public class Student implements Comparable<Student> {
         al.add(new Student(106,"Vijay",'c'));
         al.add(new Student(101,"Ajay",'a'));
         al.add(new Student(105,"Jai",'b'));
+        al.add(new Student(103,"Jai",'b'));
+        al.add(new Student(104,"Jai",'b'));
 
         Collections.sort(al);
         for(Student st:al){
